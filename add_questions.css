@@ -1,0 +1,18 @@
+.form-control {
+    background-color: #222;
+    color: #fff;
+}
+
+.form-control:focus {
+    background-color: #111;
+    color: #fff;
+}
+
+li {
+    font-size: 1.3rem;
+}
+
+.preview-button > svg {
+    height: 2rem;
+    fill: #fff !important;
+}
