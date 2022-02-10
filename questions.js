@@ -49,10 +49,15 @@ const answers = {
 };
 
 const getQuestions = (roundNumber) => {
+    const quest = JSON.parse(window.localStorage.getItem('questions'));
+    if (quest && Object.keys(quest).length >= roundNumber)
+        return quest[roundNumber];
     return questions[roundNumber];
 };
 
 const getAnswers = (roundNumber) => {
+    const ans = JSON.parse(window.localStorage.getItem('answers'));
+    if (ans && Object.keys(ans).length >= roundNumber) return ans[roundNumber];
     return answers[roundNumber];
 };
 

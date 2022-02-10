@@ -49,7 +49,7 @@ const addGameButtons = () => {
         const newDiv = document.createElement('div'); //create a div to hold the button
         const newBtn = document.createElement('button'); //create the button itself
         $(newBtn).attr('id', btn); //add a numbered id for reference when we need to refer to a particular button
-        $(newBtn).addClass('btn btn-primary btn-lg col-11 choice'); //add Bootstrap classes to the buttons for style
+        $(newBtn).addClass('btn btn-primary btn-lg col-11 text-light choice'); //add Bootstrap classes to the buttons for style
         $(newDiv).addClass('col-4'); //add some Bootstrap classes to the container for layout purposes
         newBtn.append(document.createTextNode(btn)); //add the button text to the button
         newDiv.append(newBtn); //add the button to the div container
@@ -92,7 +92,6 @@ const loadNextRound = () => {
     round++;
     $('.game').remove();
     const game = document.createElement('div');
-    console.log(round, game);
     $('.container').append(game); // Add the game board to the container
     $(game).addClass('game');
     addGameStatus();
@@ -203,6 +202,7 @@ const questionHandler = (button) => {
 const answerHandler = (button) => {
     $(button)
         .addClass('btn-warning')
+        .addClass('text-light')
         .addClass('givePoints')
         .removeClass('answer'); //change color
     $(button).text(currentPlayer); //set to blank by default
