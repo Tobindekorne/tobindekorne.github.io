@@ -1,0 +1,83 @@
+body,
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.fill {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12rem;
+    margin-top: 2rem;
+    font-size: 12em;
+    border: none;
+}
+
+.start {
+    margin: 0, 10rem;
+    padding: 0, 10rem;
+}
+
+.title {
+    font-size: 5em;
+}
+
+.game {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.answer,
+.question {
+    background-color: transparent;
+    min-height: 50%;
+    font-size: 8em;
+}
+
+.game-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge.even-larger-badge {
+    font-size: 2em;
+    justify-content: center;
+}
+
+.question-image,
+.answer-image {
+    height: 100%;
+    width: 100%;
+}
+
+.restart-button,
+.next-round-button {
+    margin: auto;
+    margin-top: 1rem;
+    font-size: 8em;
+    text-transform: uppercase;
+}
+
+.next-round-button {
+    float: right;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 0.5rem;
+    }
+
+    .btn {
+        height: 6rem;
+    }
+}
