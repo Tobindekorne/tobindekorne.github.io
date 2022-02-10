@@ -64,7 +64,6 @@ const registerPreview = () => {
 
 const togglePreview2 = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
     if ($(e.currentTarget).hasClass('preview-math')) {
         previewMode();
         $('.preview-button').removeClass('preview-math');
@@ -78,7 +77,6 @@ const previewMode = () => {
     questionText = [];
     answerText = [];
     $('.question').replaceWith((elem) => {
-        console.log($('.question')[elem]);
         const p = document.createElement('p');
         $(p)
             .addClass($('.question')[elem].className)
@@ -88,7 +86,6 @@ const previewMode = () => {
     });
 
     $('.answer').replaceWith((elem) => {
-        console.log($('.answer')[elem]);
         const p = document.createElement('p');
         $(p)
             .addClass($('.answer')[elem].className)
@@ -101,7 +98,6 @@ const previewMode = () => {
 
 const editMode = () => {
     $('.question').replaceWith((elem) => {
-        console.log($('.question')[elem]);
         const input = document.createElement('input');
         const textElem = $('.question')[elem];
         $(input)
@@ -112,7 +108,6 @@ const editMode = () => {
     });
 
     $('.answer').replaceWith((elem) => {
-        console.log($('.answer')[elem]);
         const input = document.createElement('input');
         $(input)
             .addClass($('.answer')[elem].className)
@@ -324,7 +319,6 @@ $(document).ready(() => {
         if (!rounds) {
             window.localStorage.setItem('rounds', 1);
         }
-        console.log('rounds:', rounds);
     } catch (error) {
         console.log(error);
     }
