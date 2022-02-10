@@ -93,6 +93,7 @@ const previewMode = () => {
         answerText.push($('.answer')[elem].value);
         return p;
     });
+    setIcon($('.preview-button'), './icons/pen-to-square-solid.svg');
     MathJax.typeset();
 };
 
@@ -115,6 +116,7 @@ const editMode = () => {
             .val(answerText[elem]);
         return input;
     });
+    setIcon($('.preview-button'), './icons/eye-solid.svg');
     MathJax.typeset();
 };
 
@@ -305,12 +307,6 @@ const createForm = () => {
     $(form).append(row);
 
     return form;
-};
-
-const preiewRow = () => {
-    const quesionPreview = document.createElement('p');
-    const answerPreview = document.createElement('p');
-    questionPreview.text();
 };
 
 $(document).ready(() => {
