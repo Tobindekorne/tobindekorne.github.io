@@ -59,24 +59,25 @@ const registerNavItems = () => {
 };
 
 const registerPreview = () => {
-    $('.preview-button').click((e) => togglePreview2(e));
+    $('.preview-button').click((e) => togglePreview(e));
 };
 
-const togglePreview2 = (e) => {
+const togglePreview = (e) => {
     e.preventDefault();
     if ($(e.currentTarget).hasClass('preview-math')) {
-        previewMode();
+        previewMode(e.currentTarget);
         $('.preview-button').removeClass('preview-math');
     } else {
-        editMode();
+        editMode(e.currentTarget);
         $('.preview-button').addClass('preview-math');
     }
 };
 
-const previewMode = () => {
+const previewMode = (button) => {
+    const form = $(button).parent().parent().parent();
     questionText = [];
     answerText = [];
-    $('.question').replaceWith((elem) => {
+    form.find('.question').replaceWith((elem) => {
         const p = document.createElement('p');
         $(p)
             .addClass($('.question')[elem].className)
@@ -85,7 +86,7 @@ const previewMode = () => {
         return p;
     });
 
-    $('.answer').replaceWith((elem) => {
+    form.find('.answer').replaceWith((elem) => {
         const p = document.createElement('p');
         $(p)
             .addClass($('.answer')[elem].className)
@@ -97,8 +98,9 @@ const previewMode = () => {
     MathJax.typeset();
 };
 
-const editMode = () => {
-    $('.question').replaceWith((elem) => {
+const editMode = (button) => {
+    const form = $(button).parent().parent().parent();
+    form.find('.question').replaceWith((elem) => {
         const input = document.createElement('input');
         const textElem = $('.question')[elem];
         $(input)
@@ -109,7 +111,7 @@ const editMode = () => {
         return input;
     });
 
-    $('.answer').replaceWith((elem) => {
+    form.find('.answer').replaceWith((elem) => {
         const input = document.createElement('input');
         $(input)
             .addClass($('.answer')[elem].className)
@@ -121,45 +123,6 @@ const editMode = () => {
     setIcon($('.preview-button'), './icons/eye-solid.svg');
     registerSaveButton();
     MathJax.typeset();
-};
-
-const togglePreview = (e) => {
-    e.preventDefault();
-    const button = $(e.currentTarget);
-    if ($(button).hasClass('preview-math')) {
-        $(button).removeClass('preview-math');
-        setIcon(button, './icons/pen-to-square-solid.svg');
-        // Get the value of the question and answer input and add them to p elements
-        // then show those elements and hide the inputs and re-evaluate the MathJax
-        const qAndA = $(button).parent().siblings();
-        const question = qAndA[0].childNodes[0].nextElementSibling;
-        const answer = qAndA[1].childNodes[0].nextElementSibling;
-        const questionVal = $(question).val();
-        const answerVal = $(answer).val();
-
-        const questionP = document.createElement('p');
-        $(questionP)
-            .text(questionVal)
-            .addClass('form-control text-light p-3 question-preview');
-        $(questionP).insertBefore(question);
-        $(question).hide();
-
-        const answerP = document.createElement('p');
-        $(answerP)
-            .text(answerVal)
-            .addClass('form-control text-light p-3 answer-preview');
-        $(answerP).insertBefore(answer);
-        $(answer).hide();
-
-        MathJax.typeset();
-    } else {
-        $('.question-preview').remove();
-        $('.question').show();
-        $('.answer-preview').remove();
-        $('.answer').show();
-        $(button).addClass('preview-math');
-        setIcon(button, './icons/eye-solid.svg');
-    }
 };
 
 const setIcon = (button, icon) => {
@@ -194,7 +157,7 @@ const createNewTab = () => {
     $(li).addClass('nav-item');
     $('.active').removeClass('active');
 
-    const numTabs = $('.nav-item').length;
+    const numTabs = $('.nav-tabs>.nav-item').length;
     const a = document.createElement('a');
     $(a)
         .addClass(`nav-link active`)
@@ -273,7 +236,7 @@ const createFormTitle = () => {
 const createForm = () => {
     const questions = createQuestions();
     const answers = createAnswers();
-    const numTabs = $('.nav-item').length;
+    const numTabs = $('.nav-tabs>.nav-item').length;
 
     const form = document.createElement('form');
     $(form)
@@ -301,12 +264,36 @@ const createForm = () => {
     }
 
     const row = document.createElement('div');
-    $(row).addClass('row g-3 align-items-center justify-content-center p-3');
+    $(row).addClass(
+        'd-flex flex-row g-3 align-items-center justify-content-between p-3'
+    );
     const button = document.createElement('button');
     $(button)
-        .addClass(`save-button btn btn-primary col-4 p-3 mb-3 form${numTabs}`)
+        .addClass(`save-button btn btn-primary col-3 p-3 mb-3 form${numTabs}`)
         .text('Save to Browser');
     $(row).append(button);
+
+    const rightButtons = document.createElement('div');
+    $(rightButtons).addClass(
+        'd-flex flex-row g-3 justify-content-end col-6 p-2'
+    );
+    const formattingTips = document.createElement('button');
+    $(formattingTips)
+        .addClass('btn btn-primary col-3 p-3 format-btn')
+        .attr('type', 'button')
+        .attr('data-bs-toggle', 'collapse')
+        .attr('data-bs-target', '#tips')
+        .attr('aria-expanded', 'false')
+        .attr('aria-controls', 'tips')
+        .text('Formatting Tips');
+    const previewButton = document.createElement('button');
+    $(previewButton).addClass('btn btn-primary preview-button preview-math');
+    setIcon(previewButton, './icons/eye-solid.svg');
+
+    $(rightButtons).append(formattingTips, previewButton);
+    $(row).append(rightButtons);
+    registerPreview();
+
     $(form).append(row);
 
     return form;

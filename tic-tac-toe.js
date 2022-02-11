@@ -269,7 +269,9 @@ const setGameWon = (winner) => {
     });
     $('button').prop('disabled', true);
     $('.game-status-text').text(`Team ${winner[0].text()} won this round!`);
-    $('.game-status-text').addClass(`badge badge-success even-larger-badge`);
+    $('.game-status-text').addClass(
+        `badge bg-success rounded-pill even-larger-badge`
+    );
     if (round < getNumberOfRounds()) {
         $('.next-round .btn').prop('disabled', false);
         $('.next-round').show();
