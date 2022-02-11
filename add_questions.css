@@ -11,6 +11,7 @@
 .question,
 .answer {
     font-size: 1.3rem;
+    max-height: 65px;
 }
 
 .preview-button > svg {
