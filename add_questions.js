@@ -10,9 +10,9 @@ const saveData = (e) => {
     let questions = { 1: [] };
     let answers = { 1: [] };
     for (let i = 1; i < 10; i++) {
-        const question = $(`#question${i}`).val();
+        const question = $(`.question.form${i}`).val();
         questions[1].push(question);
-        const answer = $(`#answer${i}`).val();
+        const answer = $(`.answer.form${i}`).val();
         answers[1].push(answer);
     }
 
@@ -104,6 +104,7 @@ const editMode = () => {
         $(input)
             .addClass($(textElem).attr('class'))
             .attr('type', 'text')
+            .attr('placeholder', `Question ${elem + 1}`)
             .val(questionText[elem]);
         return input;
     });
@@ -113,10 +114,12 @@ const editMode = () => {
         $(input)
             .addClass($('.answer')[elem].className)
             .attr('type', 'text')
+            .attr('placeholder', `Answer ${elem + 1}`)
             .val(answerText[elem]);
         return input;
     });
     setIcon($('.preview-button'), './icons/eye-solid.svg');
+    registerSaveButton();
     MathJax.typeset();
 };
 
