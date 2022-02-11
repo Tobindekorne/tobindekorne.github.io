@@ -8,11 +8,20 @@
     color: #fff;
 }
 
-li {
+.question,
+.answer {
     font-size: 1.3rem;
 }
 
 .preview-button > svg {
     height: 2rem;
     fill: #fff !important;
+}
+
+#format-btn {
+    margin-right: 1rem;
+}
+
+p {
+    margin: 0;
 }
