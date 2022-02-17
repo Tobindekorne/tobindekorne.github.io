@@ -1,5 +1,8 @@
 body {
     --logo-color: rgb(255, 255, 255);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 svg#nav--logo {
@@ -8,4 +11,8 @@ svg#nav--logo {
     stroke: var(--logo-color);
     filter: drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.4));
     margin-right: -200px;
+}
+
+footer {
+    margin-top: auto;
 }

@@ -23,6 +23,13 @@
         <script src="add_questions.js"></script>
         <link rel="stylesheet" type="text/css" href="add_questions.css" />
         <link rel="stylesheet" href="common-styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <title>Question Builder</title>
     </head>
     <body class="bg-dark text-light">
@@ -64,8 +71,9 @@
                             <path
                                 d="M348.278,407.813C372.333,377.498 408.577,342.97 455.426,318.268C493.226,298.336 537.957,284.826 588.935,285.582C669.093,286.447 737.489,319.357 786.231,370.223C811.441,396.532 831.32,427.666 844.84,461.762C858.037,495.044 865.228,531.13 864.97,568.347C865.015,598.51 860.736,627.365 852.785,654.329C840.121,697.274 817.972,735.383 787.8,766.053C739.445,815.208 670.908,845.38 588.959,845.875C532.113,846.423 490.885,837.315 457.212,820.767C416.535,800.777 386.86,770.068 354.246,732.572C385.571,771.834 414.291,804.06 454.535,825.941C488.426,844.366 530.419,855.417 588.841,857.192C675.231,859.506 748.541,829.761 800.971,779.38C834.385,747.271 859.328,706.723 873.75,660.705C882.786,631.872 887.539,600.852 887.83,568.432C887.852,528.239 880.09,489.216 865.362,453.466C850.336,416.995 828.229,383.867 800.375,356.304C747.37,303.853 673.695,271.339 588.865,273.218C536.149,274.599 490.394,290.218 452.235,312.525C406.059,339.517 371.122,376.102 348.278,407.813Z"
                             />
-                        </g></svg
-                ></a>
+                        </g>
+                    </svg>
+                </a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -285,38 +293,30 @@
                     </div>
                 </div>
                 <div
-                    class="d-flex flex-row g-3 align-items-center justify-content-between p-3"
+                    class="d-flex flex-row g-3 align-items-center justify-content-between"
                 >
-                    <button class="save-button btn btn-primary col-3 p-3 mb-3">
-                        Save to Browser
-                    </button>
-                    <div
-                        class="d-flex flex-row g-3 justify-content-end col-6 p-2"
+                    <!-- info button -->
+                    <button
+                        class="btn btn-primary p-3 format-btn"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#tips"
+                        aria-expanded="false"
+                        aria-controls="tips"
                     >
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    <!-- Right side buttons -->
+                    <div class="d-flex flex-row g-3 justify-content-end col-6">
+                        <!-- Preview button -->
                         <button
-                            class="btn btn-primary col-3 p-3 format-btn"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#tips"
-                            aria-expanded="false"
-                            aria-controls="tips"
+                            class="btn btn-primary p-3 preview-button preview-math"
                         >
-                            Formatting Tips
+                            <i class="fas fa-eye"></i>
                         </button>
-
-                        <button
-                            class="btn btn-primary preview-button preview-math"
-                        >
-                            <svg
-                                class="button-icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512"
-                            >
-                                <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                <path
-                                    d="M279.6 160.4C282.4 160.1 285.2 160 288 160C341 160 384 202.1 384 256C384 309 341 352 288 352C234.1 352 192 309 192 256C192 253.2 192.1 250.4 192.4 247.6C201.7 252.1 212.5 256 224 256C259.3 256 288 227.3 288 192C288 180.5 284.1 169.7 279.6 160.4zM480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6V112.6zM288 112C208.5 112 144 176.5 144 256C144 335.5 208.5 400 288 400C367.5 400 432 335.5 432 256C432 176.5 367.5 112 288 112z"
-                                />
-                            </svg>
+                        <!-- Save button -->
+                        <button class="save-button btn btn-primary p-3">
+                            <i class="fa-solid fa-floppy-disk"></i>
                         </button>
                     </div>
                 </div>
@@ -355,5 +355,60 @@
                 </div>
             </div>
         </div>
+        <!-- end container -->
+
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Twitter -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        href="https://twitter.com/TdeKorne"
+                        role="button"
+                        ><i class="fab fa-twitter"></i
+                    ></a>
+
+                    <!-- Instagram -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        href="https://www.instagram.com/tobindekorne/"
+                        role="button"
+                        ><i class="fab fa-instagram"></i
+                    ></a>
+
+                    <!-- Linkedin -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        href="https://www.linkedin.com/in/tobin-dekorne/"
+                        role="button"
+                        ><i class="fab fa-linkedin-in"></i
+                    ></a>
+
+                    <!-- Github -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        href="https://github.com/Tobindekorne/"
+                        role="button"
+                        ><i class="fab fa-github"></i
+                    ></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div
+                class="text-center p-3"
+                style="background-color: rgba(0, 0, 0, 0.2)"
+            >
+                © 2022 Copyright:
+                <a class="text-white" href="https://tobindekorne.github.io/"
+                    >Tobin deKorne</a
+                >
+            </div>
+            <!-- Copyright -->
+        </footer>
     </body>
 </html>

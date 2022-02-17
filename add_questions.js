@@ -1,6 +1,14 @@
 let questionText,
     answerText = [];
 
+const registerFormatButton = () => {
+    $('.format-btn').click((e) => scrollToTips(e));
+};
+
+const scrollToTips = (e) => {
+    document.getElementById('format-tips').scrollIntoView();
+};
+
 const registerSaveButton = () => {
     $('.save-button').click((e) => saveData(e));
 };
@@ -94,7 +102,7 @@ const previewMode = (button) => {
         answerText.push($('.answer')[elem].value);
         return p;
     });
-    setIcon($('.preview-button'), './icons/pen-to-square-solid.svg');
+    $('.preview-button>i').removeClass('fa-eye').addClass('fa-edit');
     MathJax.typeset();
 };
 
@@ -120,17 +128,9 @@ const editMode = (button) => {
             .val(answerText[elem]);
         return input;
     });
-    setIcon($('.preview-button'), './icons/eye-solid.svg');
+    $('.preview-button>i').removeClass('fa-edit').addClass('fa-eye');
     registerSaveButton();
     MathJax.typeset();
-};
-
-const setIcon = (button, icon) => {
-    fetch(icon)
-        .then((response) => response.text())
-        .then((data) => {
-            $(button).html(data);
-        });
 };
 
 const activateNavItem = (e) => {
@@ -288,7 +288,7 @@ const createForm = () => {
         .text('Formatting Tips');
     const previewButton = document.createElement('button');
     $(previewButton).addClass('btn btn-primary preview-button preview-math');
-    setIcon(previewButton, './icons/eye-solid.svg');
+    $('.preview-button>i').addClass('fa-eye');
 
     $(rightButtons).append(formattingTips, previewButton);
     $(row).append(rightButtons);
@@ -313,6 +313,7 @@ $(document).ready(() => {
     registerNewRoundButton();
     registerNavItems();
     registerPreview();
+    registerFormatButton();
 });
 
 (function () {

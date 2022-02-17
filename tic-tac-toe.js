@@ -9,12 +9,13 @@ let round = 1;
 
 const setupGame = () => {
     const game = document.createElement('div');
-    $('.container').append(game); // Add the game board to the container
+    $('#game-container').append(game); // Add the game board to the container
     $(game).addClass('game');
     addGameStatus();
     addGameButtons();
     addResetButton();
     addNextRoundButton();
+    console.log(`game setup as `, game);
 
     $('.choice').click((e) => {
         choiceHandler(e.currentTarget);
@@ -49,7 +50,9 @@ const addGameButtons = () => {
         const newDiv = document.createElement('div'); //create a div to hold the button
         const newBtn = document.createElement('button'); //create the button itself
         $(newBtn).attr('id', btn); //add a numbered id for reference when we need to refer to a particular button
-        $(newBtn).addClass('btn btn-primary btn-lg col-11 text-light choice'); //add Bootstrap classes to the buttons for style
+        $(newBtn).addClass(
+            'btn btn-primary btn-lg col-11 text-light game-btn choice'
+        ); //add Bootstrap classes to the buttons for style
         $(newDiv).addClass('col-4'); //add some Bootstrap classes to the container for layout purposes
         newBtn.append(document.createTextNode(btn)); //add the button text to the button
         newDiv.append(newBtn); //add the button to the div container
@@ -71,7 +74,7 @@ const addResetButton = () => {
     const restartButton = document.createElement('button');
     $(restartButton)
         .append(document.createTextNode('Restart'))
-        .addClass('btn btn-primary btn-lg col-11 restart-button');
+        .addClass('btn btn-primary btn-lg col-11 game-btn restart-button');
     $(restartDiv).append(restartButton).addClass('restart').hide();
     $('.game').append(restartDiv).hide(); // Hide the game until a start player has been chosen
     $('.restart').click(() => location.reload());
@@ -82,7 +85,7 @@ const addNextRoundButton = () => {
     const nextRoundtButton = document.createElement('button');
     $(nextRoundtButton)
         .append(document.createTextNode('Next Round >>'))
-        .addClass('btn btn-primary btn-lg col-11 next-round-button');
+        .addClass('btn btn-primary btn-lg col-11 game-btn next-round-button');
     $(nextRoundtDiv).append(nextRoundtButton).addClass('next-round').hide();
     $('.game').append(nextRoundtDiv).hide(); // Hide the game until a start player has been chosen
     $('.next-round').click(() => loadNextRound());
@@ -92,7 +95,7 @@ const loadNextRound = () => {
     round++;
     $('.game').remove();
     const game = document.createElement('div');
-    $('.container').append(game); // Add the game board to the container
+    $('#game-container').append(game); // Add the game board to the container
     $(game).addClass('game');
     addGameStatus();
     addGameButtons();
@@ -118,8 +121,8 @@ const askToStart = () => {
     const oStarts = document.createElement('button');
     xStarts.append(document.createTextNode('X'));
     oStarts.append(document.createTextNode('O'));
-    $(xStarts).addClass('btn btn-primary btn-lg col-11 start'); //add Bootstrap classes to the buttons for style
-    $(oStarts).addClass('btn btn-primary btn-lg col-11 start'); //add Bootstrap classes to the buttons for style
+    $(xStarts).addClass('btn btn-primary btn-lg col-11 game-btn start'); //add Bootstrap classes to the buttons for style
+    $(oStarts).addClass('btn btn-primary btn-lg col-11 game-btn start'); //add Bootstrap classes to the buttons for style
     $(xDiv).addClass('col-6'); //add some Bootstrap classes to the container for layout purposes
     $(oDiv).addClass('col-6'); //add some Bootstrap classes to the container for layout purposes
     xDiv.append(xStarts);
@@ -127,7 +130,7 @@ const askToStart = () => {
     $(row).append(xDiv);
     $(row).append(oDiv);
     $(startDiv).append(row);
-    $('.container').append(startDiv); // add to the container on the html page
+    $('#game-container').append(startDiv); // add to the container on the html page
 
     $(xStarts).click(() => {
         currentPlayer = 'X';
