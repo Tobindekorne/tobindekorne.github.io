@@ -1,0 +1,11 @@
+body {
+    --logo-color: rgb(255, 255, 255);
+}
+
+svg#nav--logo {
+    width: 100%;
+    fill: var(--logo-color);
+    stroke: var(--logo-color);
+    filter: drop-shadow(5px 8px 3px rgba(0, 0, 0, 0.4));
+    margin-right: -200px;
+}

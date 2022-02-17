@@ -15,7 +15,7 @@ body,
     align-items: center;
     height: 12rem;
     margin-top: 2rem;
-    font-size: 12em;
+    font-size: 8em;
     border: none;
 }
 
@@ -25,7 +25,7 @@ body,
 }
 
 .title {
-    font-size: 5em;
+    font-size: 3em;
 }
 
 .game {
@@ -40,7 +40,7 @@ body,
 .question {
     background-color: transparent;
     min-height: 50%;
-    font-size: 8em;
+    font-size: 5em;
 }
 
 .game-status {
@@ -80,6 +80,12 @@ a:hover {
     font-size: 2em;
     height: 2em;
     margin-left: 12rem;
+}
+
+.game-status-text {
+    padding: 15px;
+    border: 1px solid #fff;
+    border-radius: 5px;
 }
 
 @media (max-width: 768px) {
